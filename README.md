@@ -1,4 +1,3 @@
-# 8051-89C52-
 # 🔥 Vi điều khiển STC89C52 (họ 8051)
 
 ## 🧭 Giới thiệu
