@@ -1,0 +1,1 @@
+﻿Khi làm việc với led 7 thanh, vui lòng không cắm LCD vào kit

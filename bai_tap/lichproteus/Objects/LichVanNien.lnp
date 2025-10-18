@@ -1,0 +1,7 @@
+".\Objects\delay.obj",
+".\Objects\ds1307.obj",
+".\Objects\i2c.obj",
+".\Objects\lcd.obj",
+".\Objects\main.obj" 
+TO ".\Objects\LichVanNien" 
+PRINT(".\Listings\LichVanNien.m51") RAMSIZE(256) 

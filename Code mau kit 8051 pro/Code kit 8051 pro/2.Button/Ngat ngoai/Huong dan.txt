@@ -1,0 +1,1 @@
+﻿Điều khiển chiều dịch chuyển của LED bằng cách phấm các nút k3(ngắt ngoài 0) và k4(ngắt ngoài 1)

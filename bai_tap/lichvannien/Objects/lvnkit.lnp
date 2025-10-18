@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\lvnkit" 
+PRINT(".\Listings\lvnkit.m51") RAMSIZE(256) 

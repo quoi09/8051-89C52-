@@ -1,0 +1,4 @@
+﻿K1 lưu dữ liêu
+K2 đoc dữ liệu
+K3 Tang gia tri
+K4 Reset gia tri

@@ -1,0 +1,332 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              09/16/2024 23:51:28 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <main.h>
+   2          int chedo;
+   3          int chuyenhuong;
+   4          unsigned char code Code7segCatot[]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77};
+   5          unsigned char BNchay[] = {1,1,0,1,1,1,1,0}, BNvang[] = {1,1,1,0,1,1,1,0}, DTchay[] = {1,1,1,1,0,0,1,1}, DT
+             -vang[] = {1,1,1,1,0,1,0,1};
+   6          int dem;
+   7          int tanso;
+   8          void delay_ms(unsigned int time)
+   9          { 
+  10   1        /* f = 12M hz*/
+  11   1        /*f vào timer 1 = 12M/2 = 6M*/
+  12   1        /*T = 1/6M s*/
+  13   1        /* 6000 --> 1ms*/
+  14   1        /*59536--> 65535 -> 0 = 1ms*/
+  15   1        while(time--){
+  16   2          TMOD = 0x01;
+  17   2          TH1 = 0xE8;
+  18   2          TL1 = 0x90;
+  19   2          TR1 = 1;
+  20   2          while(!TF1);
+  21   2          TF1 = 0;
+  22   2        }
+  23   1      }
+  24          void Traffic_Auto(void)
+  25          {
+  26   1        int i;
+  27   1      //  StatusTraffic = 0x21;
+  28   1          P3_6 = 0;
+  29   1          P3_5 = 0;
+  30   1          for(i = 0; i< 8;i++)
+  31   1          {
+  32   2            P3_4 = BNchay[i];
+  33   2            delay_ms(1);
+  34   2            P3_6 = 1;
+  35   2            delay_ms(1);
+  36   2            P3_6 = 0;
+  37   2          }
+  38   1          P3_5 = 1;
+  39   1          // delay10s
+  40   1          for (dem = 10; dem >= 3; dem--)
+  41   1          {
+  42   2              if (chedo == 1)
+  43   2              {
+  44   3                  return;
+  45   3              }
+  46   2              for (tanso = 0; tanso < 30; tanso++)
+  47   2              {  
+  48   3                  chonLED = 0x08;
+  49   3                  /*dvi_DT = 1;*/
+  50   3                  Display = Code7segCatot[dem % 10];
+  51   3                  delay_ms(10);
+  52   3                  /*dvi_DT = 0;
+  53   3                  dvi_BN = 1;*/
+C51 COMPILER V9.60.7.0   MAIN                                                              09/16/2024 23:51:28 PAGE 2   
+
+  54   3                  chonLED = 0x00;
+  55   3                  Display = Code7segCatot[(dem - 3)%10];
+  56   3                  delay_ms(10);
+  57   3                  /*dvi_BN = 0;
+  58   3                  chuc_DT = 1;*/
+  59   3                chonLED = 0x0c;
+  60   3                  Display = Code7segCatot[dem / 10];
+  61   3                  delay_ms(10);
+  62   3                  chonLED = 0x04;
+  63   3                  Display = Code7segCatot[(dem - 3)/10];
+  64   3                  delay_ms(10);
+  65   3      
+  66   3              }
+  67   2          }
+  68   1      //  StatusTraffic = 0x9;
+  69   1          P3_6 = 0;
+  70   1          P3_5 = 0;
+  71   1          for(i = 0; i< 8;i++)
+  72   1          {
+  73   2            P3_4 = BNvang[i];
+  74   2            delay_ms(1);
+  75   2            P3_6 = 1;
+  76   2            delay_ms(1);
+  77   2            P3_6 = 0;
+  78   2          }
+  79   1          P3_5 = 1;
+  80   1          // delay3s
+  81   1          for (dem = 2; dem >= 0; dem--)
+  82   1          {
+  83   2              if (chedo == 1)
+  84   2              {
+  85   3                  return;
+  86   3              }
+  87   2              for (tanso = 0; tanso < 30; tanso++)
+  88   2              {
+  89   3      
+  90   3                 chonLED = 0x08;
+  91   3                  /*dvi_DT = 1;*/
+  92   3                  Display = Code7segCatot[dem % 10];
+  93   3                  delay_ms(10);
+  94   3                  /*dvi_DT = 0;
+  95   3                  dvi_BN = 1;*/
+  96   3                  chonLED = 0x00;
+  97   3                  Display = Code7segCatot[dem % 10];
+  98   3                  delay_ms(10);
+  99   3                  /*dvi_BN = 0;
+ 100   3                  chuc_DT = 1;*/
+ 101   3                chonLED = 0x0c;
+ 102   3                  Display = Code7segCatot[dem / 10];
+ 103   3                  delay_ms(10);
+ 104   3                  /*
+ 105   3                  chuc_DT = 0;
+ 106   3                  chuc_BN = 1;*/
+ 107   3                  chonLED = 0x04;
+ 108   3                  Display = Code7segCatot[dem / 10];
+ 109   3                  delay_ms(10);
+ 110   3      
+ 111   3              }
+ 112   2          }
+ 113   1      //  StatusTraffic = 0x12;
+ 114   1          // delay10s
+ 115   1          P3_6 = 0;
+C51 COMPILER V9.60.7.0   MAIN                                                              09/16/2024 23:51:28 PAGE 3   
+
+ 116   1          P3_5 = 0;
+ 117   1          for(i = 0; i< 8;i++)
+ 118   1          {
+ 119   2            P3_4 = DTchay[i];
+ 120   2            delay_ms(1);
+ 121   2            P3_6 = 1;
+ 122   2            delay_ms(1);
+ 123   2            P3_6 = 0;
+ 124   2          }
+ 125   1          P3_5 = 1;
+ 126   1          for (dem = 10; dem >= 3; dem--)
+ 127   1          {
+ 128   2              if (chedo == 1)
+ 129   2              {
+ 130   3                  return;
+ 131   3              }
+ 132   2              for (tanso = 0; tanso < 30; tanso++)
+ 133   2              {
+ 134   3                  /*0001_1100*/
+ 135   3                  /*dvi_BN = 1;*/
+ 136   3                  chonLED = 0x00;
+ 137   3                  Display = Code7segCatot[dem % 10];
+ 138   3                  delay_ms(10);
+ 139   3                  /*dvi_BN = 0;
+ 140   3                  dvi_DT = 1;*/
+ 141   3                  chonLED = 0x08;
+ 142   3                  Display = Code7segCatot[(dem - 3)%10];
+ 143   3                  delay_ms(10);
+ 144   3                  /*dvi_DT = 0;
+ 145   3                  chuc_BN = 1;*/
+ 146   3                  chonLED = 0x04;
+ 147   3                  Display = Code7segCatot[dem / 10];
+ 148   3                  delay_ms(10);
+ 149   3                  /*
+ 150   3                  chuc_BN = 0;
+ 151   3                  chuc_DT = 1;*/
+ 152   3                  chonLED = 0x0c;
+ 153   3                  Display = Code7segCatot[(dem - 3)/10];
+ 154   3                  delay_ms(10);
+ 155   3      
+ 156   3              }
+ 157   2          }
+ 158   1      //  StatusTraffic = 0x6; 
+ 159   1          // delay3s
+ 160   1          P3_6 = 0;
+ 161   1          P3_5 = 0;
+ 162   1          for(i = 0; i< 8;i++)
+ 163   1          {
+ 164   2            P3_4 = DTvang[i];
+ 165   2            delay_ms(1);
+ 166   2            P3_6 = 1;
+ 167   2            delay_ms(1);
+ 168   2            P3_6 = 0;
+ 169   2          }
+ 170   1          P3_5 = 1;
+ 171   1          for (dem = 2; dem >= 0; dem--)
+ 172   1          {
+ 173   2              if (chedo == 1)
+ 174   2              {
+ 175   3                  return;
+ 176   3              }
+ 177   2              for (tanso = 0; tanso < 30; tanso++)
+C51 COMPILER V9.60.7.0   MAIN                                                              09/16/2024 23:51:28 PAGE 4   
+
+ 178   2              {
+ 179   3                  /*0001_1100*/
+ 180   3                  /*dvi_BN = 1;*/
+ 181   3                  chonLED = 0x0;
+ 182   3                  Display = Code7segCatot[dem % 10];
+ 183   3                  delay_ms(10);
+ 184   3                  /*dvi_BN = 0;
+ 185   3                  dvi_DT = 1;*/
+ 186   3                  chonLED = 0x08;
+ 187   3                  Display = Code7segCatot[dem % 10];
+ 188   3                  delay_ms(10);
+ 189   3                  /*dvi_DT = 0;
+ 190   3                  chuc_BN = 1;*/
+ 191   3                  chonLED = 0x04;
+ 192   3                  Display = Code7segCatot[dem / 10];
+ 193   3                  delay_ms(10);
+ 194   3                  /*
+ 195   3                  chuc_BN = 0;
+ 196   3                  chuc_DT = 1;*/
+ 197   3                  chonLED = 0x0c;
+ 198   3                  Display = Code7segCatot[dem / 10];
+ 199   3                  delay_ms(10);
+ 200   3      
+ 201   3              }
+ 202   2          }
+ 203   1      }
+ 204          void Interrupt_Timer0(void)
+ 205          {
+ 206   1          /* f = 12M hz*/
+ 207   1          /*f vào timer 0 = 12M/12 = 1M*/
+ 208   1          /*T = 1/6M s*/
+ 209   1          /* 1000 --> 1ms*/
+ 210   1          /*64536--> 65535 -> 0 = 1ms*/
+ 211   1          /* 16 bits timer */
+ 212   1          TMOD = 0x01;
+ 213   1          /* setup 1ms for overforlow */
+ 214   1          
+ 215   1          TH0 = 0xFC;
+ 216   1          TL0 = 0x18;
+ 217   1          /* Enable interrupt */
+ 218   1          ET0 = 1;
+ 219   1          EA = 1;
+ 220   1          /* Enable timer0 */
+ 221   1          TR0 = 1;
+ 222   1      }
+ 223          
+ 224          void ISR_TIMER(void) interrupt 1
+ 225          {
+ 226   1          if (ET0 == 1)
+ 227   1          {
+ 228   2              if (SW_chedo == 0)
+ 229   2              {
+ 230   3                  delay_ms(100);
+ 231   3                  if (SW_chedo == 1)
+ 232   3                  {
+ 233   4                      chedo++;
+ 234   4                  }
+ 235   3                  if (chedo > 1)
+ 236   3                      chedo = 0;
+ 237   3              }
+ 238   2              /*setup 1ms for overforlow*/
+ 239   2              TH0 = 0xFC;
+C51 COMPILER V9.60.7.0   MAIN                                                              09/16/2024 23:51:28 PAGE 5   
+
+ 240   2              TL0 = 0x18;
+ 241   2          }
+ 242   1      }
+ 243          
+ 244          void main(void)
+ 245          {
+ 246   1        int i;
+ 247   1          Interrupt_Timer0();
+ 248   1          while (1)
+ 249   1          {
+ 250   2              if (chedo == 1)
+ 251   2              {
+ 252   3                  P2 = 0xff;
+ 253   3                  P0 = 0x00;
+ 254   3                  if (SW == 0)
+ 255   3                  {
+ 256   4                      delay_ms(100);
+ 257   4                      if (SW == 1)
+ 258   4                      {
+ 259   5                          chuyenhuong++;
+ 260   5                      }
+ 261   4                      if (chuyenhuong > 1)
+ 262   4                          chuyenhuong = 0;
+ 263   4                  }
+ 264   3                  if(chuyenhuong)
+ 265   3                  {
+ 266   4                    P3_6 = 0;
+ 267   4                    P3_5 = 0;
+ 268   4                    for(i = 0; i< 8;i++)
+ 269   4                    {
+ 270   5                      P3_4 = BNchay[i];
+ 271   5                      delay_ms(1);
+ 272   5                      P3_6 = 1;
+ 273   5                      delay_ms(1);
+ 274   5                      P3_6 = 0;
+ 275   5                    }
+ 276   4                    P3_5 = 1;
+ 277   4                  }
+ 278   3                  else
+ 279   3                  {
+ 280   4                    P3_6 = 0;
+ 281   4                    P3_5 = 0;
+ 282   4                    for(i = 0; i< 8;i++)
+ 283   4                    {
+ 284   5                      P3_4 = DTchay[i];
+ 285   5                      delay_ms(1);
+ 286   5                      P3_6 = 1;
+ 287   5                      delay_ms(1);
+ 288   5                      P3_6 = 0;
+ 289   5                    }
+ 290   4                    P3_5 = 1;             
+ 291   4                  }
+ 292   3              }
+ 293   2              if (chedo == 0)
+ 294   2                  Traffic_Auto();
+ 295   2          }
+ 296   1      }
+ 297                          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1051    ----
+C51 COMPILER V9.60.7.0   MAIN                                                              09/16/2024 23:51:28 PAGE 6   
+
+   CONSTANT SIZE    =     11    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     40       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

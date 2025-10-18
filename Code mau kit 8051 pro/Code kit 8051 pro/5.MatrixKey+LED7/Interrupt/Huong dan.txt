@@ -1,0 +1,1 @@
+﻿Bấm các nút trên matran phim. Gia trị sẽ được hiển thị lên toàn bộ led 7 thanh từ phải-trai

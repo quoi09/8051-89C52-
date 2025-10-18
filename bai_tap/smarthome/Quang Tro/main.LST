@@ -1,0 +1,239 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              10/28/2024 15:47:53 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include"reg51.h"
+   2          #include"XPT2046.h"
+   3          
+   4          #define GPIO_DIG P0
+   5          
+   6          sbit LSA=P2^2;
+   7          sbit LSB=P2^3;
+   8          sbit LSC=P2^4;
+   9          sbit led=P2^7;
+  10          sbit led1=P2^0;
+  11          
+  12          
+  13          unsigned char code DIG_CODE[17]={
+  14          0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,
+  15          0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+  16          // 0 1 2 3 4 5 6 7 8 9 A B C D E F
+  17          
+  18          unsigned char irKey = 0;
+  19          unsigned long bitPattern = 0;
+  20          unsigned long newKey = 0;
+  21          unsigned long pre_newKey = 0;
+  22          unsigned char timerValue;
+  23          unsigned char msCount = 0;
+  24          char pulseCount = 0;
+  25          
+  26          
+  27          void Timer0_Init(void);
+  28          unsigned char Decode_IRKey(unsigned char key);
+  29          void ToggleLED(unsigned char ledNum);  // dao trang thai led 
+  30          unsigned char DisplayData[8];   //
+  31          void DigDisplay(void);
+  32          void delay(unsigned int ms) {
+  33   1          unsigned int i, j;
+  34   1          for (i = 0; i < ms; i++) {
+  35   2              for (j = 0; j < 120; j++) {
+  36   3                  ; // Do nothing for delay
+  37   3              }
+  38   2          }
+  39   1      }
+  40          
+  41          
+  42          
+  43          void main(void)
+  44                    {
+  45   1                   uint temp;
+  46   1                   uint sec=5;
+  47   1                   uint t1o,t1n,t2o,t2n;
+  48   1                   P2 = 0xFF;          // 
+  49   1                   Timer0_Init();      // 
+  50   1                   EA = 1;             //
+  51   1                  
+  52   1                  while (1)
+  53   1                  { 
+  54   2                    temp = Read_AD_Data(0xA4);
+  55   2                    if(temp<150) led=0; //  r quang tro <125 thi den sang 
+C51 COMPILER V9.60.7.0   MAIN                                                              10/28/2024 15:47:53 PAGE 2   
+
+  56   2                    else led=1;   
+  57   2                    // troi toi den sang 
+  58   2                    
+  59   2                    
+  60   2                    if ((newKey != 0)&& (pre_newKey != newKey))  // bam phim moi
+  61   2                    {   
+  62   3                      irKey = Decode_IRKey(newKey);             // giai ma phim
+  63   3                      if (irKey == 1 )             // phim 1 thi dao led 1
+  64   3                          led1=~led1;
+  65   3                      //ToggleLED(irKey);  
+  66   3                      
+  67   3                    // 
+  68   3                      
+  69   3                      if( irKey==2 )  // phim 2 thi dao led 2
+  70   3                      { 
+  71   4                        for(sec=6; sec>=0;sec--)
+  72   4                        {
+  73   5                          LSA=1;
+  74   5                          LSB=1;
+  75   5                          LSC=1;
+  76   5      
+  77   5                          GPIO_DIG=DIG_CODE[sec]; 
+  78   5                          delay(1000);
+  79   5                          if(sec==0) {ToggleLED(irKey); break; }  
+  80   5                        }
+  81   4                        
+  82   4                      }
+  83   3                    // hen gio sang den
+  84   3                      
+  85   3                    }
+  86   2                    pre_newKey = newKey;                          // C?p nh?t gi? tr? ph?m tru?c
+  87   2                  }
+  88   1                }
+*** WARNING C280 IN LINE 47 OF main.c: 't1o': unreferenced local variable
+*** WARNING C280 IN LINE 47 OF main.c: 't1n': unreferenced local variable
+*** WARNING C280 IN LINE 47 OF main.c: 't2o': unreferenced local variable
+*** WARNING C280 IN LINE 47 OF main.c: 't2n': unreferenced local variable
+  89          
+  90          void DigDisplay(void)
+  91          {
+  92   1        unsigned char i;
+  93   1        unsigned int j;
+  94   1        for(i=0;i<0;i++)
+  95   1        {
+  96   2          switch(i)  //
+  97   2          {
+  98   3            case(0):
+  99   3              LSA=0;LSB=0;LSC=0; break;// led 0
+ 100   3            case(1):
+ 101   3              LSA=1;LSB=0;LSC=0; break;// led 1
+ 102   3            case(2):
+ 103   3              LSA=0;LSB=1;LSC=0; break;// led 2
+ 104   3            case(3):
+ 105   3              LSA=1;LSB=1;LSC=0; break;// led 3
+ 106   3            case(4):
+ 107   3              LSA=0;LSB=0;LSC=1; break;// led 4
+ 108   3            case(5):
+ 109   3              LSA=1;LSB=0;LSC=1; break;// led 5
+ 110   3            case(6):
+ 111   3              LSA=0;LSB=1;LSC=1; break;// led 6
+ 112   3            case(7):
+ 113   3              LSA=1;LSB=1;LSC=1; break;// led 7 
+C51 COMPILER V9.60.7.0   MAIN                                                              10/28/2024 15:47:53 PAGE 3   
+
+ 114   3          }
+ 115   2          GPIO_DIG=DisplayData[i];//?
+ 116   2          j=50;            //
+ 117   2          while(j--); 
+ 118   2          GPIO_DIG=0x00;// 
+ 119   2        }
+ 120   1        
+ 121   1      }
+ 122          
+ 123          unsigned char Decode_IRKey(unsigned char key){
+ 124   1          unsigned char returnValue = 0;
+ 125   1          switch (key)
+ 126   1          {
+ 127   2          case 0xFF30CF:  // Ph?m '1'
+ 128   2              returnValue = 1;
+ 129   2              break;
+ 130   2          case 0xFF18E7:  // Ph?m '2'
+ 131   2              returnValue = 2;
+ 132   2              break;
+ 133   2          case 0xFF7A85:  // Ph?m '3'
+ 134   2              returnValue = 3;
+ 135   2              break;
+ 136   2          default:
+ 137   2              returnValue = 0;  // M? kh?ng h?p l?
+ 138   2              break;
+ 139   2          }
+ 140   1          return returnValue;
+ 141   1      }
+ 142          
+ 143          // Ng?t Timer0 d? d?m mili gi?y
+ 144          void timer0_isr() interrupt 1
+ 145          {
+ 146   1          if (msCount < 50)
+ 147   1              msCount++;
+ 148   1          
+ 149   1          // C?u h?nh l?i gi? tr? Timer0 d? ti?p t?c d?m 1ms
+ 150   1          TH0 = 0xFC; 
+ 151   1          TL0 = 0x18;  // Gi? tr? du?c t?nh cho t?n s? 12MHz
+ 152   1      }
+ 153          
+ 154          // Ng?t ngo?i d? nh?n t?n hi?u IR
+ 155          void externalIntr0_ISR() interrupt 0
+ 156          {
+ 157   1          timerValue = msCount;
+ 158   1          msCount = 0;
+ 159   1          
+ 160   1          TH0 = 0xFC; 
+ 161   1          TL0 = 0x18;  // C?u h?nh l?i Timer0
+ 162   1      
+ 163   1          pulseCount++;
+ 164   1          
+ 165   1          if ((timerValue >= 50))  // N?u d? r?ng xung l?n hon 50ms, d?nh d?u b?t d?u khung (Start Of Frame)
+ 166   1          {
+ 167   2              pulseCount = -2;     // B? qua 2 xung d?u
+ 168   2              bitPattern = 0;
+ 169   2          }
+ 170   1          else if ((pulseCount >= 0) && (pulseCount < 32)) // T?ch luy gi? tr? bit t? 0 d?n 31
+ 171   1          {
+ 172   2              if (timerValue >= 2) // Xung c? d? r?ng > 2ms l? bit 1
+ 173   2                  bitPattern |= (unsigned long)1 << (31 - pulseCount);
+ 174   2          }
+ 175   1          else if (pulseCount >= 32) // K?t th?c khung khi nh?n d? 32 bit
+C51 COMPILER V9.60.7.0   MAIN                                                              10/28/2024 15:47:53 PAGE 4   
+
+ 176   1          {
+ 177   2              newKey = bitPattern;  // Luu m? ph?m m?i
+ 178   2              pulseCount = 0;
+ 179   2          }
+ 180   1      }
+ 181          
+ 182          // Kh?i t?o Timer0
+ 183          void Timer0_Init(){
+ 184   1          TMOD |= 0x01;     // C?u h?nh Timer0 ? ch? d? 16-bit (MODE 1)
+ 185   1          TH0 = 0xFC; 
+ 186   1          TL0 = 0x18;       // Gi? tr? kh?i t?o cho 1ms t?i t?n s? 12 MHz
+ 187   1          TR0 = 1;          // B?t d?u Timer0
+ 188   1          ET0 = 1;          // Cho ph?p ng?t Timer0
+ 189   1          IT0 = 1;          // C?u h?nh ng?t ngo?i INT0 k?ch ho?t ? c?nh xu?ng
+ 190   1          EX0 = 1;          // Cho ph?p ng?t ngo?i INT0
+ 191   1      }
+ 192          
+ 193          // H?m d?i tr?ng th?i LED tuong ?ng
+ 194          void ToggleLED(unsigned char ledNum){
+ 195   1          // ledNum = 1, 2, 3 tuong ?ng v?i LED t?i P2.0, P2.1, P2.2
+ 196   1          switch (ledNum) {
+ 197   2              case 1: 
+ 198   2                  P2 ^= 0x01;  // ??i tr?ng th?i LED1 (P2.0)
+ 199   2                  break;
+ 200   2              case 2: 
+ 201   2                  P2 ^= 0x02;  // ??i tr?ng th?i LED2 (P2.1)
+ 202   2                  break;
+ 203   2              case 3: 
+ 204   2                  P2 ^= 0x04;  // ??i tr?ng th?i LED3 (P2.
+ 205   2          }
+ 206   1        }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    577    ----
+   CONSTANT SIZE    =     17    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     24      10
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  4 WARNING(S),  0 ERROR(S)

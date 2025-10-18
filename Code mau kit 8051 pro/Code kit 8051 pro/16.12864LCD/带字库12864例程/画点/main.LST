@@ -1,0 +1,70 @@
+C51 COMPILER V9.01   MAIN                                                                  09/06/2013 22:42:07 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: D:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"lcd12864.h"
+   3          
+   4          //--声明全局函数--//
+   5          void Delay10ms(unsigned int c);   //延时10ms
+   6          
+   7          /*******************************************************************************
+   8          * 函 数 名         : main
+   9          * 函数功能       : 主函数
+  10          * 输    入         : 无
+  11          * 输    出         : 无
+  12          *******************************************************************************/
+  13          
+  14          void main()
+  15          {
+  16   1        while(1)
+  17   1        {
+  18   2          LCD12864_ClearScreen();
+  19   2          LCD12864_DrowPoint(127,63);
+  20   2          while(1); 
+  21   2        } 
+  22   1      }
+  23          
+  24          /*******************************************************************************
+  25          * 函 数 名         : Delay10ms
+  26          * 函数功能       : 延时函数，延时10ms
+  27          * 输    入         : 无
+  28          * 输    出         : 无
+  29          *******************************************************************************/
+  30          
+  31          void Delay10ms(unsigned int c)   //误差 0us
+  32          {
+  33   1          unsigned char a, b;
+  34   1      
+  35   1        //--c已经在传递过来的时候已经赋值了，所以在for语句第一句就不用赋值了--//
+  36   1          for (;c>0;c--)
+  37   1        {
+  38   2          for (b=38;b>0;b--)
+  39   2          {
+  40   3            for (a=130;a>0;a--);
+  41   3          }
+  42   2                 
+  43   2        }
+  44   1              
+  45   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     37    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+C51 COMPILER V9.01   MAIN                                                                  09/06/2013 22:42:07 PAGE 2   
+
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

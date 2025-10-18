@@ -1,0 +1,1 @@
+﻿Bấm các phím trên ma trận phím 4x3, giá trị sẽ được hiển thị lên LED 7 thanh

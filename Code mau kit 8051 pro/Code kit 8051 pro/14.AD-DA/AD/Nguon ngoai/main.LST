@@ -1,0 +1,102 @@
+C51 COMPILER V9.01   MAIN                                                                  05/10/2014 14:00:34 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include"reg51.h"
+   2          #include"XPT2046.h"
+   3          
+   4          //--定义使用的IO--//
+   5          #define GPIO_DIG P0
+   6          
+   7          sbit LSA=P2^2;
+   8          sbit LSB=P2^3;
+   9          sbit LSC=P2^4;
+  10          
+  11          //--定义全局变量--//
+  12          unsigned char code DIG_CODE[17]={
+  13          0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,
+  14          0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+  15          //0、1、2、3、4、5、6、7、8、9、A、b、C、d、E、F的显示码
+  16          unsigned char DisplayData[8];           //用来存放要显示的8位数的值
+  17          void DigDisplay(void);
+  18          void main(void)
+  19          {
+  20   1              uint temp,count;
+  21   1              while(1)
+  22   1              {
+  23   2                if(count==50)
+  24   2                {
+  25   3                      count=0; 
+  26   3              //      temp = Read_AD_Data(0x94);              //   AIN0 电位器
+  27   3              //      temp = Read_AD_Data(0xD4);              //   AIN1 热敏电阻
+  28   3              //      temp = Read_AD_Data(0xA4);              //   AIN2 光敏电阻
+  29   3                      temp = Read_AD_Data(0xE4);              //   AIN3 外部输入
+  30   3                }
+  31   2                count++;
+  32   2                
+  33   2                DisplayData[7]=DIG_CODE[0];
+  34   2                DisplayData[6]=DIG_CODE[0];
+  35   2                DisplayData[5]=DIG_CODE[0];
+  36   2                DisplayData[4]=DIG_CODE[0];
+  37   2      
+  38   2                DisplayData[3]=DIG_CODE[temp%10000/1000];
+  39   2                DisplayData[2]=DIG_CODE[temp%1000/100];
+  40   2                DisplayData[1]=DIG_CODE[temp%100/10];
+  41   2                DisplayData[0]=DIG_CODE[temp%10/1];
+  42   2      
+  43   2                DigDisplay();
+  44   2              }
+  45   1      }
+  46          void DigDisplay(void)
+  47          {
+  48   1              unsigned char i;
+  49   1              unsigned int j;
+  50   1              for(i=0;i<8;i++)
+  51   1              {
+  52   2                      switch(i)        //位选，选择点亮的数码管，
+  53   2                      {
+  54   3                              case(0):
+  55   3                                      LSA=0;LSB=0;LSC=0; break;//显示第0位
+C51 COMPILER V9.01   MAIN                                                                  05/10/2014 14:00:34 PAGE 2   
+
+  56   3                              case(1):
+  57   3                                      LSA=1;LSB=0;LSC=0; break;//显示第1位
+  58   3                              case(2):
+  59   3                                      LSA=0;LSB=1;LSC=0; break;//显示第2位
+  60   3                              case(3):
+  61   3                                      LSA=1;LSB=1;LSC=0; break;//显示第3位
+  62   3                              case(4):
+  63   3                                      LSA=0;LSB=0;LSC=1; break;//显示第4位
+  64   3                              case(5):
+  65   3                                      LSA=1;LSB=0;LSC=1; break;//显示第5位
+  66   3                              case(6):
+  67   3                                      LSA=0;LSB=1;LSC=1; break;//显示第6位
+  68   3                              case(7):
+  69   3                                      LSA=1;LSB=1;LSC=1; break;//显示第7位    
+  70   3                      }
+  71   2                      GPIO_DIG=DisplayData[i];//发送段码
+  72   2                      j=50;                                            //扫描间隔时间设定
+  73   2                      while(j--);     
+  74   2                      GPIO_DIG=0x00;//消隐
+  75   2              }
+  76   1      }
+  77                  
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    303    ----
+   CONSTANT SIZE    =     17    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      8       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

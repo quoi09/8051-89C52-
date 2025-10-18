@@ -1,0 +1,3 @@
+﻿Baude:4800
+Sử dụng cổng usb và cài driver của CH340 trước khi sử dụng
+Hoạt đông: Chương trình sẽ nhận các kí tự từ máy tính và gửi lại dữ liệu là kí tự nhận được

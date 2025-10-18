@@ -1,0 +1,7 @@
+".\Objects\delay.obj",
+".\Objects\ds1307.obj",
+".\Objects\i2c.obj",
+".\Objects\lcd.obj",
+".\Objects\main.obj" 
+TO ".\Objects\giaothongp" 
+PRINT(".\Listings\giaothongp.m51") RAMSIZE(256) 

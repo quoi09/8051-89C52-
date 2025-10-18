@@ -1,0 +1,219 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+E:\朗\普中版实验\12864\12864程序\画点\pro.uvproj
+Project File Date:  09/06/2013
+
+<h2>Output:</h2>
+compiling lcd12864.c...
+LCD12864.C(306): warning C209: '_LCD12864_WriteData': too few actual parameters
+LCD12864.C(307): error C202: 'read': undefined identifier
+LCD12864.C(308): error C202: 'read': undefined identifier
+LCD12864.C(309): error C202: 'read': undefined identifier
+LCD12864.C(310): error C202: 'read': undefined identifier
+lcd12864.c - 4 Error(s), 1 Warning(s).
+compiling lcd12864.c...
+LCD12864.C(311): error C202: 'read': undefined identifier
+lcd12864.c - 1 Error(s), 0 Warning(s).
+compiling lcd12864.c...
+lcd12864.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCD12864_INIT?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_SETWINDOW?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_PUT_POINT?LCD12864
+Program Size: data=24.0 xdata=0 code=2704
+creating hex file from "pro"...
+"pro" - 0 Error(s), 3 Warning(s).
+compiling lcd12864.c...
+lcd12864.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCD12864_INIT?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_SETWINDOW?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_DROWPOINT?LCD12864
+Program Size: data=24.0 xdata=0 code=2704
+creating hex file from "pro"...
+"pro" - 0 Error(s), 3 Warning(s).
+compiling main.c...
+MAIN.C(19): warning C206: 'LCD12864_DrowPoint': missing function-prototype
+MAIN.C(19): error C267: 'LCD12864_DrowPoint': requires ANSI-style prototype
+main.c - 1 Error(s), 1 Warning(s).
+compiling main.c...
+main.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling lcd12864.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCD12864_INIT?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_SETWINDOW?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_DROWPIC?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY10MS?MAIN
+Program Size: data=22.0 xdata=0 code=634
+creating hex file from "pro"...
+"pro" - 0 Error(s), 4 Warning(s).
+compiling main.c...
+main.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCD12864_INIT?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_SETWINDOW?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_DROWPIC?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY10MS?MAIN
+Program Size: data=22.0 xdata=0 code=634
+creating hex file from "pro"...
+"pro" - 0 Error(s), 4 Warning(s).
+compiling lcd12864.c...
+lcd12864.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCD12864_INIT?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_SETWINDOW?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_DROWPIC?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY10MS?MAIN
+Program Size: data=22.0 xdata=0 code=639
+creating hex file from "pro"...
+"pro" - 0 Error(s), 4 Warning(s).
+compiling lcd12864.c...
+lcd12864.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCD12864_INIT?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_SETWINDOW?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_DROWPIC?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY10MS?MAIN
+Program Size: data=22.0 xdata=0 code=639
+creating hex file from "pro"...
+"pro" - 0 Error(s), 4 Warning(s).
+compiling lcd12864.c...
+lcd12864.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCD12864_INIT?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_SETWINDOW?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_DROWPIC?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY10MS?MAIN
+Program Size: data=22.0 xdata=0 code=639
+creating hex file from "pro"...
+"pro" - 0 Error(s), 4 Warning(s).
+compiling main.c...
+main.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling lcd12864.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCD12864_INIT?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_SETWINDOW?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_DROWPIC?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY10MS?MAIN
+Program Size: data=22.0 xdata=0 code=634
+creating hex file from "pro"...
+"pro" - 0 Error(s), 4 Warning(s).
+compiling main.c...
+main.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCD12864_INIT?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_SETWINDOW?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_DROWPIC?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY10MS?MAIN
+Program Size: data=22.0 xdata=0 code=634
+creating hex file from "pro"...
+"pro" - 0 Error(s), 4 Warning(s).
+compiling main.c...
+main.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCD12864_INIT?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_SETWINDOW?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_DROWPIC?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY10MS?MAIN
+Program Size: data=22.0 xdata=0 code=634
+creating hex file from "pro"...
+"pro" - 0 Error(s), 4 Warning(s).
+compiling main.c...
+main.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCD12864_INIT?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_SETWINDOW?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_DROWPIC?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY10MS?MAIN
+Program Size: data=22.0 xdata=0 code=634
+creating hex file from "pro"...
+"pro" - 0 Error(s), 4 Warning(s).
+compiling main.c...
+main.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling lcd12864.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCD12864_INIT?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_SETWINDOW?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_DROWPIC?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY10MS?MAIN
+Program Size: data=22.0 xdata=0 code=634
+creating hex file from "pro"...
+"pro" - 0 Error(s), 4 Warning(s).
+compiling lcd12864.c...
+lcd12864.c - 0 Error(s), 0 Warning(s).
+compiling main.c...
+main.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCD12864_INIT?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_SETWINDOW?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD12864_DROWPIC?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY10MS?MAIN
+Program Size: data=22.0 xdata=0 code=634
+creating hex file from "pro"...
+"pro" - 0 Error(s), 4 Warning(s).

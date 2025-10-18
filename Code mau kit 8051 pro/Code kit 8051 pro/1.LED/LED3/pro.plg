@@ -1,0 +1,23 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+E:\朗\普中版实验\HC6800-ES V1.0光盘资料I版\CH6800-ES V1.0关盘资料\51实验例程(C语言)\1.LED\点亮LED\pro.uvproj
+Project File Date:  04/27/2013
+
+<h2>Output:</h2>
+compiling led.c...
+led.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=9.0 xdata=0 code=61
+creating hex file from "pro"...
+"pro" - 0 Error(s), 0 Warning(s).
+compiling led.c...
+led.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=9.0 xdata=0 code=61
+creating hex file from "pro"...
+"pro" - 0 Error(s), 0 Warning(s).

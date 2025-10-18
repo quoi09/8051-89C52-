@@ -1,0 +1,17 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+D:\资料整理\工程文件\51工程文件\AD输入\外部输入AD值\AD.uvproj
+Project File Date:  05/06/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SPI_START?XPT2046
+Program Size: data=21.0 xdata=0 code=520
+creating hex file from "AD"...
+"AD" - 0 Error(s), 1 Warning(s).

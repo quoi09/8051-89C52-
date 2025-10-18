@@ -1,0 +1,74 @@
+C51 COMPILER V9.01   LED                                                                   08/16/2013 16:26:58 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE LED
+OBJECT MODULE PLACED IN led.OBJ
+COMPILER INVOKED BY: D:\Keil\C51\BIN\C51.EXE led.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          /**************************************************************************************
+   2          *                 LED闪烁的简单试验                         *
+   3          *                     *                                           *
+   4          ***************************************************************************************/
+   5          
+   6          #include <reg51.h>     //此文件中定义了51的一些特殊功能寄存器
+   7          
+   8          void Delay10ms(unsigned int);   //误差 0us
+   9          /*******************************************************************************
+  10          * 函 数 名       : main
+  11          * 函数功能     : 主函数
+  12          * 输    入       : 无
+  13          * 输    出       : 无
+  14          *******************************************************************************/
+  15          
+  16          void main()
+  17          { 
+  18   1        while(1)
+  19   1        {
+  20   2          P2  = 0x00;    //置P0口为低电平
+  21   2          Delay10ms(50); //调用延时程序
+  22   2          P2  = 0xff;    //置P0口为高电平
+  23   2          Delay10ms(50); // 调用延时程序
+  24   2        }
+  25   1      
+  26   1      }
+  27          /*******************************************************************************
+  28          * 函 数 名         : Delay10ms
+  29          * 函数功能       : 延时函数，延时10ms
+  30          * 输    入         : 无
+  31          * 输    出         : 无
+  32          *******************************************************************************/
+  33          void Delay10ms(unsigned int c)   //误差 0us
+  34          {
+  35   1          unsigned char a,b;
+  36   1          for(;c>0;c--)
+  37   1              for(b=38;b>0;b--)
+  38   1                  for(a=130;a>0;a--);
+  39   1      }
+  40          
+  41          
+  42          
+  43          
+  44          
+  45          
+  46          
+  47          
+  48          
+  49          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     46    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V9.01   LED                                                                   08/16/2013 16:26:58 PAGE 2   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

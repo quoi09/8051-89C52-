@@ -1,0 +1,1 @@
+﻿JOE jumper cần phải được kết nối với GND, JUM595 phải được kết nối, đèn LED sẽ sáng 595!!

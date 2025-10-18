@@ -1,0 +1,1 @@
+﻿Nút nhấn   K1, đèn LED hiển thị bên phải!
